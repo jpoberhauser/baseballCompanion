@@ -2,20 +2,30 @@
 
 ## Execution and Plan
 
-Setup & Proof of Concept 
+### Setup & Proof of Concept 
+
 	•	Set up llama.cpp locally.
+
 	•	Run Whisper on a test video and store transcript.
+
 	•	Build embedding + vector store prototype.
+
 	•	Manual prompt + RAG integration with llama.cpp.
 
-Backend Pipeline 
+### Backend Pipeline 
+
 	•	Automate YouTube → transcript → embedding → store.
+
 	•	Script for refreshing content weekly/daily.
+
 	•	Test with multiple baseball YouTube episodes.
 
-Desktop App 
+### Desktop App 
+
 	•	Develop UI for search/QA and sentiment display.
+
 	•	Connect LLM and vector DB backend to UI.
+
 	•	Local persistent state and vector DB management.
 
 
