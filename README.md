@@ -2,6 +2,14 @@
 
 This app runs locally and allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation).
 
+
+## Tools
+
+Whisper for audio transcription into text:
+
+[Faster Whisper Library ](https://github.com/SYSTRAN/faster-whisper)
+
+
 ## Execution and Plan
 
 ### Setup & Proof of Concept 
