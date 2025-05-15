@@ -60,6 +60,7 @@ def download_audio(youtube_url, out_dir="downloads"):
         info = ydl.extract_info(youtube_url, download=True)
         return f"{out_dir}/{info['id']}.mp3", info['id']
 
+
 def transcribe(audio_path, model_size="medium", output_dir="transcripts"):
     model = WhisperModel(model_size, compute_type="int8")
     segments, _ = model.transcribe(audio_path)
@@ -71,6 +72,13 @@ def transcribe(audio_path, model_size="medium", output_dir="transcripts"):
             "end": seg.end,
             "text": seg.text
         })
+
+    output_path = os.path.join(output_dir, os.path.basename(audio_path).replace(".mp3", ".txt"))
+    with open(output_path, "w") as f:
+        for chunk in text_chunks:
+            f.write(f"[{chunk['start']:.2f} - {chunk['end']:.2f}] {chunk['text']}\n")
+
+    print(f"Transcription saved to: {output_path}")
     return text_chunks
 ```
 

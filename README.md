@@ -3,6 +3,50 @@
 This app runs locally and allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation).
 
 
+## Tools:
+
+- **faster-whisper** for super fast transcription of videos to audio
+- yt-dlp as a download engine for videos
+- **llama.cpp** as an inference engine with flexible model backends and can run on apple silicon
+- **mistral-7b-instruct** as the base model
+- 
+
+
+
+## 0. Prerequisites
+
+Install the required tools and packages:
+
+```bash
+# Install FFmpeg
+brew install ffmpeg  # or sudo apt install ffmpeg
+
+# Install yt-dlp
+pip install yt-dlp
+
+# Install Whisper
+pip install faster-whisper
+
+# Install sentence-transformers and FAISS
+pip install sentence-transformers faiss-cpu
+
+# Clone llama.cpp and compile
+
+
+git clone https://github.com/ggerganov/llama.cpp.git
+brew install llama.cpp
+
+
+# cd llama.cpp
+# make LLAMA_METAL=1
+mkdir -p models
+# Download a quantized GGUF model (example: Mistral 7B)
+wget https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/resolve/main/mistral-7b-instruct-v0.1.Q4_K_M.gguf -P models/
+
+# test in conversation mode:
+llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template chatml
+```
+
 
 ## Tools
 
@@ -16,7 +60,6 @@ Whisper for audio transcription into text:
 faster-whisper is a reimplementation of OpenAI's Whisper model using CTranslate2, which is a fast inference engine for Transformer models.
 
 This implementation is up to 4 times faster than openai/whisper for the same accuracy while using less memory. The efficiency can be further improved with 8-bit quantization on both CPU and GPU.
-
 
 `pip install faster-whisper`
 
@@ -57,6 +100,13 @@ ToDo: this needs to be automated to keep the DB fresh.
 python engine.py --url https://youtube.com/watch?v=abc123 --model-size small
 ```
 
+### LLama.cpp
+
+Let's use pure c++ inference from `https://github.com/ggml-org/llama.cpp`. This project also supports multimodal inputs now, so we can eventually extend this to pure video for analysis. It supports LLaVA 1.5 models, Qwen2-VL, Moondream (a personal favorite), and some ~15 other multi-modal models. For text-only models, it supports Gemma, Mamba Grok-1, Gpts, Deepseek models, Mistral models, some Mixtral Mixture of Experts, along some ~50 others. 
+
+
+
+"The main goal of llama.cpp is to enable LLM inference with minimal setup and state-of-the-art performance on a wide range of hardware - locally and in the cloud."
 
 ## Execution and Plan
 
