@@ -1,5 +1,9 @@
 # baseballCompanion
 
+Local app that allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation). Currently using Mistral 7B instruct, but flexible to model backends. 
+
+
+
 ![baseballCompanion](assets/logo.png)
 
 - [baseballCompanion](#baseballcompanion)
@@ -16,8 +20,6 @@
     - [Disclaimer: --\> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use.](#disclaimer----this-is-an-educational-tool-to-showcase-how-to-work-with-llms-and-rag-applications-not-for-commercial-use)
 
 
-This app runs locally and allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation).
-
 
 ## Tools:
 
@@ -27,7 +29,6 @@ This app runs locally and allows you to ask natural language questions about the
 - **mistral-7b-instruct** as the base model
 - **sentence_transformers** as the sentence embedding model
 - **LangChain** for RAG, query construction, query refinement, etc..
-
 
 
 
@@ -88,6 +89,7 @@ Having the richest owner in the sport obviously helps that. If you go down the l
  Then this year, you know, they went out and made some trades for Belly for Williams. Those haven't been great, but
 ```
 
+And the above chunk would clearly be a very good context chunk for an LLM to have when asked about the current state of the New York Mets for example. 
 
 
 ## Prerequisites
