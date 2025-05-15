@@ -2,10 +2,21 @@
 
 ![baseballCompanion](assets/logo.png)
 
+- [baseballCompanion](#baseballcompanion)
+  - [Tools:](#tools)
+  - [Example](#example)
+  - [0. Prerequisites](#0-prerequisites)
+  - [Tools](#tools-1)
+    - [Faster Whisper](#faster-whisper)
+    - [YT-DLP](#yt-dlp)
+    - [Usage](#usage)
+    - [LLama.cpp](#llamacpp)
+  - [Execution and Plan](#execution-and-plan)
+    - [Setup \& Proof of Concept](#setup--proof-of-concept)
+    - [Backend Pipeline](#backend-pipeline)
+    - [Desktop App](#desktop-app)
+    - [ToDo:](#todo)
 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/logo.png" width=50%>
-</p>
 
 This app runs locally and allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation).
 
@@ -16,6 +27,8 @@ This app runs locally and allows you to ask natural language questions about the
 - yt-dlp as a download engine for videos
 - **llama.cpp** as an inference engine with flexible model backends and can run on apple silicon
 - **mistral-7b-instruct** as the base model
+
+
 
 
 ## Example
@@ -35,9 +48,11 @@ Post-context:
 ```
 Some people may be excited about the possibility of having him on the team, as he is known for his impressive performance at the plate and his speed on the bases. However, it is important to note that nothing is certain until a trade is officially announced. 
 
-The video and podcast episode you mentioned also provide some context about Luis Robert's performance in recent seasons, including his batting average, on-base percentage, slugging, and OPS. It also mentions that he has been playing bad for two years, but that it is hard not to see what he did in previous seasons. 
+The video and podcast episode you mentioned also provide some context about Luis Robert's performance in recent seasons, including his batting average, 
+on-base percentage, slugging, and OPS. It also mentions that he has been playing bad for two years, but that it is hard not to see what he did in previous seasons. 
 
-In terms of value, a trade for Luis Robert would likely involve giving up a significant amount of assets, such as top prospects or established players. It is also worth considering the potential risk of injury, as Luis Robert has only played more than 101 games in one season in his entire career. 
+In terms of value, a trade for Luis Robert would likely involve giving up a significant amount of assets, such as top prospects 
+or established players. It is also worth considering the potential risk of injury, as Luis Robert has only played more than 101 games in one season in his entire career. 
 
 Is there anything else you would like to know about this topic?
 ```
