@@ -5,11 +5,14 @@
 - [baseballCompanion](#baseballcompanion)
   - [Tools:](#tools)
   - [Example](#example)
+  - [Example of Retrieval to Documents:](#example-of-retrieval-to-documents)
   - [Prerequisites](#prerequisites)
     - [Faster Whisper](#faster-whisper)
     - [YT-DLP](#yt-dlp)
     - [LLama.cpp](#llamacpp)
     - [Embeddings](#embeddings)
+      - [Question 1: Chunking](#question-1-chunking)
+    - [LangChain Text Splitter](#langchain-text-splitter)
     - [Disclaimer: --\> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use.](#disclaimer----this-is-an-educational-tool-to-showcase-how-to-work-with-llms-and-rag-applications-not-for-commercial-use)
 
 
@@ -23,6 +26,8 @@ This app runs locally and allows you to ask natural language questions about the
 - **llama.cpp** as an inference engine with flexible model backends and can run on apple silicon
 - **mistral-7b-instruct** as the base model
 - **sentence_transformers** as the sentence embedding model
+- **LangChain** for RAG, query construction, query refinement, etc..
+
 
 
 
@@ -53,7 +58,37 @@ or established players. It is also worth considering the potential risk of injur
 Is there anything else you would like to know about this topic?
 ```
 
+## Example of Retrieval to Documents:
 
+* query = "The New York Mets are very good"
+
+```
+query_embedding = model.encode(query)
+
+# 4. Compute cosine similarities
+cos_scores = util.cos_sim(query_embedding, embeddings)[0]  # shape: (3,)
+
+# 5. Find most similar
+most_similar_idx = cos_scores.argmax()
+print(f"Query: {query}")
+print(f"Most similar: {all_chunks[most_similar_idx]}")
+print(f"Scores: {cos_scores}")most_similar_idx]}")
+print(f"Scores: {cos_scores}")
+```
+
+Gives us: 
+
+```
+Most similar: York Mets, they went and got Juan Soto. They went and signed Francis Golden Door back. They've been bringing players in. 
+Having the richest owner in the sport obviously helps that. If you go down the line, the Cubs made a big play for Tucker and the rest of the Astros team.
+ They bring him over. Now, they're performing very well. The Dodgers have went out and signed everybody. 
+ The Padres and all the trades they've made for Michael King, Dylan Cease, you know, they've done a lot. 
+ Champions League of Giants have landed a bunch of free agents. That's been the difference. T
+ hey've just got the good players when the good players were available. If you look at the American League team, 
+ name me a team that's done that. Yeah. There isn't a team that's went out and got the big player. T
+ he Yankees, they did that and they made it to the World Series. They went out and got Juan Soto. 
+ Then this year, you know, they went out and made some trades for Belly for Williams. Those haven't been great, but
+```
 
 
 
@@ -159,6 +194,18 @@ Let's use pure c++ inference from [LLAMMA.cpp](https://github.com/ggml-org/llama
 ```
 model = SentenceTransformer("all-MiniLM-L6-v2")
 ```
+
+#### Question 1: Chunking
+
+* given a large document of pure text, how do we get chunks? 
+
+* do we split by sentences?
+
+* LangChain has a nice text splitter: https://python.langchain.com/docs/concepts/text_splitters/
+
+### LangChain Text Splitter
+
+
 
 ### Disclaimer: --> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use. 
 
