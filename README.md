@@ -5,17 +5,12 @@
 - [baseballCompanion](#baseballcompanion)
   - [Tools:](#tools)
   - [Example](#example)
-  - [0. Prerequisites](#0-prerequisites)
-  - [Tools](#tools-1)
+  - [Prerequisites](#prerequisites)
     - [Faster Whisper](#faster-whisper)
     - [YT-DLP](#yt-dlp)
-    - [Usage](#usage)
     - [LLama.cpp](#llamacpp)
-  - [Execution and Plan](#execution-and-plan)
-    - [Setup \& Proof of Concept](#setup--proof-of-concept)
-    - [Backend Pipeline](#backend-pipeline)
-    - [Desktop App](#desktop-app)
-    - [ToDo:](#todo)
+    - [Embeddings](#embeddings)
+    - [Disclaimer: --\> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use.](#disclaimer----this-is-an-educational-tool-to-showcase-how-to-work-with-llms-and-rag-applications-not-for-commercial-use)
 
 
 This app runs locally and allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation).
@@ -27,6 +22,7 @@ This app runs locally and allows you to ask natural language questions about the
 - yt-dlp as a download engine for videos
 - **llama.cpp** as an inference engine with flexible model backends and can run on apple silicon
 - **mistral-7b-instruct** as the base model
+- **sentence_transformers** as the sentence embedding model
 
 
 
@@ -61,7 +57,7 @@ Is there anything else you would like to know about this topic?
 
 
 
-## 0. Prerequisites
+## Prerequisites
 
 Install the required tools and packages:
 
@@ -94,9 +90,6 @@ wget https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/resolve/main/
 # test in conversation mode:
 llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template chatml
 ```
-
-
-## Tools
 
 
 ### Faster Whisper
@@ -138,7 +131,6 @@ for segment in segments:
 
 yt-dlp is a feature-rich command-line audio/video downloader with support for thousands of sites. The project is a fork of youtube-dl based on the now inactive youtube-dlc.
 
-### Usage
 
 * To get the transcription engine running:
 
@@ -150,53 +142,23 @@ python engine.py --url https://youtube.com/watch?v=abc123 --model-size small
 
 ### LLama.cpp
 
-Let's use pure c++ inference from `https://github.com/ggml-org/llama.cpp`. This project also supports multimodal inputs now, so we can eventually extend this to pure video for analysis. It supports LLaVA 1.5 models, Qwen2-VL, Moondream (a personal favorite), and some ~15 other multi-modal models. For text-only models, it supports Gemma, Mamba Grok-1, Gpts, Deepseek models, Mistral models, some Mixtral Mixture of Experts, along some ~50 others. 
+Let's use pure c++ inference from [LLAMMA.cpp](https://github.com/ggml-org/llama.cpp). This project also supports multimodal inputs now, so we can eventually extend this to pure video for analysis. It supports LLaVA 1.5 models, Qwen2-VL, Moondream (a personal favorite), and some ~15 other multi-modal models. For text-only models, it supports Gemma, Mamba Grok-1, Gpts, Deepseek models, Mistral models, some Mixtral Mixture of Experts, along some ~50 others. 
 
 
 
 "The main goal of llama.cpp is to enable LLM inference with minimal setup and state-of-the-art performance on a wide range of hardware - locally and in the cloud."
 
-## Execution and Plan
+### Embeddings
 
-### Setup & Proof of Concept 
-
-	•	Set up llama.cpp locally.
-
-	•	Run Whisper on a test video and store transcript.
-
-	•	Build embedding + vector store prototype.
-
-	•	Manual prompt + RAG integration with llama.cpp.
-
-### Backend Pipeline 
-
-	•	Automate YouTube → transcript → embedding → store.
-
-	•	Script for refreshing content weekly/daily.
-
-	•	Test with multiple baseball YouTube episodes.
-
-### Desktop App 
-
-	•	Develop UI for search/QA and sentiment display.
-
-	•	Connect LLM and vector DB backend to UI.
-
-	•	Local persistent state and vector DB management.
+* There's many ways to get embeddings. We can call models with an API key like Mistral, OpenAI, Anthropic embedding models. We can also go another route and try to run embeddings locally, with a local model, for example  [sentence_transformers](https://huggingface.co/sentence-transformers)
 
 
+"Sentence Transformers (a.k.a. SBERT) is the go-to Python module for accessing, using, and training state-of-the-art embedding and reranker models. It can be used to compute embeddings using Sentence Transformer models or to calculate similarity scores using Cross-Encoder (a.k.a. reranker) models. This unlocks a wide range of applications, including semantic search, semantic textual similarity, and paraphrase mining."
 
 
-### ToDo:
+```
+model = SentenceTransformer("all-MiniLM-L6-v2")
+```
 
-	•	Improve prompt templates for answer relevance.
-	•	Add UI features like transcript preview, sentiment summaries, model stats.
-	•	Test usability, performance, edge cases.
-	•	Stream video transcription and real-time updates.
-	•	Speaker diarization and source tracking.
-	•	Natural language summarization of multiple videos.
-	•	Offline video analysis and content tagging.
-
-
-**Disclaimer** --> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use. 
+### Disclaimer: --> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use. 
 
