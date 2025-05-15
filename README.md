@@ -9,7 +9,27 @@ This app runs locally and allows you to ask natural language questions about the
 - yt-dlp as a download engine for videos
 - **llama.cpp** as an inference engine with flexible model backends and can run on apple silicon
 - **mistral-7b-instruct** as the base model
-- 
+
+
+## Example
+
+* The date is May 15, 2025. There are several trade rumors about Luis Robert to the Mets. Let's ask our assistant what people are saying about this:
+
+* question: 'what are people saying today about trade rumors of Luis Robert to the Mets?'
+
+Pre-context:
+
+```
+I don't have real-time information about specific trade rumors, but I can tell you that Luis Robert is a promising young outfielder who has been playing for the Chicago White Sox. He is known for his impressive performance at the plate and his speed on the bases. Some people may be interested in knowing what the Mets are thinking about the possibility of acquiring him, but it is important to note that nothing is certain until a trade is officially announced. Is there anything else you would like to know?<|im_end|>
+```
+
+Post-context:
+
+```
+Some people may be excited about the possibility of having him on the team, as he is known for his impressive performance at the plate and his speed on the bases. However, it is important to note that nothing is certain until a trade is officially announced. The video and podcast episode you mentioned also provide some context about Luis Robert's performance in recent seasons, including his batting average, on-base percentage, slugging, and OPS. It also mentions that he has been playing bad for two years, but that it is hard not to see what he did in previous seasons. In terms of value, a trade for Luis Robert would likely involve giving up a significant amount of assets, such as top prospects or established players. It is also worth considering the potential risk of injury, as Luis Robert has only played more than 101 games in one season in his entire career. Is there anything else you would like to know about this topic?
+```
+
+
 
 
 
