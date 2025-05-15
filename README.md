@@ -4,8 +4,8 @@
 
 - [baseballCompanion](#baseballcompanion)
   - [Tools:](#tools)
-  - [Example](#example)
-  - [Example of Retrieval to Documents:](#example-of-retrieval-to-documents)
+  - [Example - before and after RAG](#example---before-and-after-rag)
+  - [Example of Retrieval to Documents](#example-of-retrieval-to-documents)
   - [Prerequisites](#prerequisites)
     - [Faster Whisper](#faster-whisper)
     - [YT-DLP](#yt-dlp)
@@ -32,7 +32,7 @@ This app runs locally and allows you to ask natural language questions about the
 
 
 
-## Example
+## Example - before and after RAG
 
 * The date is May 15, 2025. There are several trade rumors about Luis Robert to the Mets. Let's ask our assistant what people are saying about this:
 
@@ -58,7 +58,7 @@ or established players. It is also worth considering the potential risk of injur
 Is there anything else you would like to know about this topic?
 ```
 
-## Example of Retrieval to Documents:
+## Example of Retrieval to Documents
 
 * query = "The New York Mets are very good"
 
@@ -72,8 +72,6 @@ cos_scores = util.cos_sim(query_embedding, embeddings)[0]  # shape: (3,)
 most_similar_idx = cos_scores.argmax()
 print(f"Query: {query}")
 print(f"Most similar: {all_chunks[most_similar_idx]}")
-print(f"Scores: {cos_scores}")most_similar_idx]}")
-print(f"Scores: {cos_scores}")
 ```
 
 Gives us: 
