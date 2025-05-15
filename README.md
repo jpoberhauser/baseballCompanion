@@ -34,17 +34,17 @@ This app runs locally and allows you to ask natural language questions about the
 
 ## Example - before and after RAG
 
-* The date is May 15, 2025. There are several trade rumors about Luis Robert to the Mets. Let's ask our assistant what people are saying about this:
+The date is May 15, 2025. There are several trade rumors about Luis Robert to the Mets. Let's ask our assistant what people are saying about this:
 
-* question: 'what are people saying today about trade rumors of Luis Robert to the Mets?'
+**question:** 'what are people saying today about trade rumors of Luis Robert to the Mets?'
 
-Pre-context:
+Pre-context answer:
 
 ```
 I don't have real-time information about specific trade rumors, but I can tell you that Luis Robert is a promising young outfielder who has been playing for the Chicago White Sox. He is known for his impressive performance at the plate and his speed on the bases. Some people may be interested in knowing what the Mets are thinking about the possibility of acquiring him, but it is important to note that nothing is certain until a trade is officially announced. Is there anything else you would like to know?<|im_end|>
 ```
 
-Post-context:
+Post-context answer:
 
 ```
 Some people may be excited about the possibility of having him on the team, as he is known for his impressive performance at the plate and his speed on the bases. However, it is important to note that nothing is certain until a trade is officially announced. 
