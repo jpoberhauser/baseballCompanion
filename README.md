@@ -2,6 +2,11 @@
 
 ![baseballCompanion](assets/logo.png)
 
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/logo.png" width=50%>
+</p>
+
 This app runs locally and allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation).
 
 
