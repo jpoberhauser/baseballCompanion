@@ -17,6 +17,7 @@ Local app that allows you to ask natural language questions about the current st
     - [Embeddings](#embeddings)
       - [Question 1: Chunking](#question-1-chunking)
     - [LangChain Text Splitter](#langchain-text-splitter)
+    - [How to make RAG better](#how-to-make-rag-better)
     - [Disclaimer: --\> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use.](#disclaimer----this-is-an-educational-tool-to-showcase-how-to-work-with-llms-and-rag-applications-not-for-commercial-use)
 
 
@@ -204,6 +205,20 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 * LangChain has a nice text splitter: https://python.langchain.com/docs/concepts/text_splitters/
 
 ### LangChain Text Splitter
+
+### How to make RAG better
+
+* There _is_ an optimal chunk size
+
+* Add metadata into chunks
+
+    * This makes it so that we can add 'structured data'-like filters onto our unstructured data (podcast transcriptions)
+
+* Embed other things like 'what questions can this chunk answer'
+
+* Small-to-big retrieval
+
+    * when we embed an entire chunk of 20-30 sentences of content, there might be some fluff around it. We cant embed every sentence though since that could make things slow, or miss context in retrieval. A nice middle ground is to try small-to-big retrieval. 
 
 
 
