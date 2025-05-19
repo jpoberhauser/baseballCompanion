@@ -18,6 +18,7 @@ Local app that allows you to ask natural language questions about the current st
       - [Question 1: Chunking](#question-1-chunking)
     - [LangChain Text Splitter](#langchain-text-splitter)
     - [How to make RAG better](#how-to-make-rag-better)
+  - [Vector DB](#vector-db)
     - [Disclaimer: --\> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use.](#disclaimer----this-is-an-educational-tool-to-showcase-how-to-work-with-llms-and-rag-applications-not-for-commercial-use)
 
 
@@ -196,6 +197,7 @@ Let's use pure c++ inference from [LLAMMA.cpp](https://github.com/ggml-org/llama
 model = SentenceTransformer("all-MiniLM-L6-v2")
 ```
 
+
 #### Question 1: Chunking
 
 * given a large document of pure text, how do we get chunks? 
@@ -219,6 +221,8 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 * Small-to-big retrieval
 
     * when we embed an entire chunk of 20-30 sentences of content, there might be some fluff around it. We cant embed every sentence though since that could make things slow, or miss context in retrieval. A nice middle ground is to try small-to-big retrieval. 
+
+## Vector DB
 
 
 
