@@ -9,6 +9,7 @@ Local app that allows you to ask natural language questions about the current st
 - [baseballCompanion](#baseballcompanion)
   - [Tools:](#tools)
   - [Example - before and after RAG](#example---before-and-after-rag)
+  - [Seeing Rag Results with LangChain](#seeing-rag-results-with-langchain)
   - [Example of Retrieval to Documents](#example-of-retrieval-to-documents)
   - [Prerequisites](#prerequisites)
     - [Faster Whisper](#faster-whisper)
@@ -59,6 +60,24 @@ In terms of value, a trade for Luis Robert would likely involve giving up a sign
 or established players. It is also worth considering the potential risk of injury, as Luis Robert has only played more than 101 games in one season in his entire career. 
 
 Is there anything else you would like to know about this topic?
+```
+
+## Seeing Rag Results with LangChain
+
+* This is using top 3 retrieval for context into a non-finetuned Mistral7B: run `chat.py` to try. 
+
+
+```
+Prompt after formatting:
+Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
+Luis Robert, trade rumors are real. Bob Nightingale has reported that Luis Robert Jr. and the New York Mets have been linked in possible trades. The White Sox are looking at Mets prospects. We're gonna talk about everything that there is to possibly talk about with these Luis Robert trade rumors in today's YouTube video and podcast episode. Make sure you are subscribed to the Mets on Podcast, YouTube channel, so don't miss out on any of the content coming at you, videos after every single series, and a third bonus episode every single week. So you're gonna want to stick around and see that. And if you are listening to us on Apple, podcast, Spotify, Google, whatever it is, drop us a reading, drop us a review, download and subscribe. We really do appreciate it. James, when I saw this news, I know we've talked about this off camera many a times. Luis Robert would be awesome on this team. He'd be fantastic to have. He'd be kind of perfect, because when you look up and down this Mets
+
+lineup, it's very clearly center field. Luis Robert Jr.'s that spot right now where he has two years of team options left on his White Sox contract, $20 million each for the next two seasons and both totally voluntary money. So the White Sox can just get rid of him from the end of the season if they don't want to pay. If you trade for him, I'm sure it won't happen. If you want to get rid of him, you could do that with no risk at all. And he has been playing bad for two years, but I think we all know the potential a guy like him has. And that was funny for me to see during our last video when we talked about it briefly, how much the Mets fan don't like this idea, how much they don't want Luis Robert, how much he sullied his name in baseball circles over his last 150 games when he's been really, really bad, but kind of forgetting the four years before that when he was really, really good the entire time. Yeah, I mean, let's give the people some context in case they don't know. Over his
+
+by again, the other comment, I think that was by MacDog and then also by Ken Rosendahl in South Territory is that this, because Will Sam and also somewhat perpude this too and report on the athletics saying like, it's not a lie that the Mets have checked in Luis Robert, have been somewhat connected to the White Sox and Robert with the center field being the spot of relative weakness in their lineup, but also being acutely aware that this is not the area of the most dire need. Cause the Mets do drop a hammer at some point, this trade deadline, it will likely be for a starting pitcher. And we still don't know where those dominoes will fall. We don't know what teams are going to be selling yet. It's way too early to know that, but being over the fourth threshold of the luxury tax, the Cohen tax, we're paying 110% tax on every single dollar that we spend above that. So if you bring in $20 million Luis Robert contract, that is $42 million. For the rest of the season, that'll be $20 million
+
+Question: hello, I am wondering if you can give me a run down on whats going on with the Luis Robert going to the Mets rumors?
 ```
 
 ## Example of Retrieval to Documents

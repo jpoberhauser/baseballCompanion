@@ -8,11 +8,12 @@ from langchain.memory import ConversationBufferMemory
 embedding_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 # 2. Load FAISS vector store
-vectorstore = FAISS.load_local("faiss_index", embeddings=embedding_model)
-
+vectorstore = FAISS.load_local("utils/faiss_index/", 
+                               embeddings=embedding_model,
+                               allow_dangerous_deserialization=True)
 # 3. Load llama.cpp model
 llm = LlamaCpp(
-    model_path="models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+     model_path="llama.cpp/models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
     temperature=0.7,
     max_tokens=512,
     n_ctx=2048,
