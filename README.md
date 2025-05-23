@@ -14,9 +14,7 @@ App that allows you to ask natural language questions about the current state of
     - [🚀 After RAG (With Retrieved Context)](#-after-rag-with-retrieved-context)
     - [📂 Context Retrieved (Top 3 Sources)](#-context-retrieved-top-3-sources)
   - [🧪 How to Reproduce](#-how-to-reproduce)
-  - [Optimizations](#optimizations)
-      - [Chunking](#chunking)
-      - [How to make RAG better ToDo](#how-to-make-rag-better-todo)
+  - [Optimizations - ToDo](#optimizations---todo)
       - [Enginge to keep RAG relevant](#enginge-to-keep-rag-relevant)
     - [Disclaimer](#disclaimer)
 
@@ -140,18 +138,8 @@ llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template ch
 ```
 
 
-## Optimizations
+## Optimizations - ToDo
 
-#### Chunking
-
-* given a large document of pure text, how do we get chunks? 
-
-* do we split by sentences?
-
-* LangChain has a nice text splitter: https://python.langchain.com/docs/concepts/text_splitters/
-
-
-#### How to make RAG better ToDo
 
 * Can we add semantinc chunking? Sentences right now are getting cut arbitrarily.
 
