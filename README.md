@@ -7,7 +7,7 @@ Local app that allows you to ask natural language questions about the current st
 ![baseballCompanion](assets/logo.png)
 
 - [baseballCompanion](#baseballcompanion)
-  - [Tools:](#tools)
+  - [Tools](#tools)
   - [📊 Example: Before and After RAG (Retrieval-Augmented Generation)](#-example-before-and-after-rag-retrieval-augmented-generation)
     - [❓ Question](#-question)
     - [🧠 Before RAG (No Context Used)](#-before-rag-no-context-used)
@@ -15,13 +15,14 @@ Local app that allows you to ask natural language questions about the current st
     - [📂 Context Retrieved (Top 3 Sources)](#-context-retrieved-top-3-sources)
   - [🧪 How to Reproduce](#-how-to-reproduce)
   - [Optimizations](#optimizations)
-      - [Question 1: Chunking](#question-1-chunking)
+      - [Chunking](#chunking)
       - [How to make RAG better](#how-to-make-rag-better)
-    - [Disclaimer:](#disclaimer)
+      - [Enginge to keep RAG relevant](#enginge-to-keep-rag-relevant)
+    - [Disclaimer](#disclaimer)
 
 
 
-## Tools:
+## Tools
 
 - **faster-whisper** for super fast transcription of videos to audio
 - yt-dlp as a download engine for videos
@@ -140,7 +141,7 @@ llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template ch
 
 ## Optimizations
 
-#### Question 1: Chunking
+#### Chunking
 
 * given a large document of pure text, how do we get chunks? 
 
@@ -164,10 +165,12 @@ llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template ch
     * when we embed an entire chunk of 20-30 sentences of content, there might be some fluff around it. We cant embed every sentence though since that could make things slow, or miss context in retrieval. A nice middle ground is to try small-to-big retrieval. 
 
 
+#### Enginge to keep RAG relevant
+
+* since the whole point of this app is to keep current news in context, we have to programatically add to our vector database and keep feeding it the latest analysis and news. 
 
 
-
-### Disclaimer: 
+### Disclaimer
 
 --> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use. 
 
