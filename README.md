@@ -14,15 +14,10 @@ Local app that allows you to ask natural language questions about the current st
     - [🚀 After RAG (With Retrieved Context)](#-after-rag-with-retrieved-context)
     - [📂 Context Retrieved (Top 3 Sources)](#-context-retrieved-top-3-sources)
   - [🧪 How to Reproduce](#-how-to-reproduce)
-    - [Faster Whisper](#faster-whisper)
-    - [YT-DLP](#yt-dlp)
-    - [LLama.cpp](#llamacpp)
-    - [Embeddings](#embeddings)
+  - [Optimizations](#optimizations)
       - [Question 1: Chunking](#question-1-chunking)
-    - [LangChain Text Splitter](#langchain-text-splitter)
-    - [How to make RAG better](#how-to-make-rag-better)
-  - [Vector DB](#vector-db)
-    - [Disclaimer: --\> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use.](#disclaimer----this-is-an-educational-tool-to-showcase-how-to-work-with-llms-and-rag-applications-not-for-commercial-use)
+      - [How to make RAG better](#how-to-make-rag-better)
+    - [Disclaimer:](#disclaimer)
 
 
 
@@ -143,74 +138,7 @@ llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template ch
 ```
 
 
-### Faster Whisper
-
-Whisper for audio transcription into text:
-
-[Faster Whisper Library ](https://github.com/SYSTRAN/faster-whisper)
-
-faster-whisper is a reimplementation of OpenAI's Whisper model using CTranslate2, which is a fast inference engine for Transformer models.
-
-This implementation is up to 4 times faster than openai/whisper for the same accuracy while using less memory. The efficiency can be further improved with 8-bit quantization on both CPU and GPU.
-
-`pip install faster-whisper`
-
-```python
-from faster_whisper import WhisperModel
-
-model_size = "large-v3"
-
-# Run on GPU with FP16
-model = WhisperModel(model_size, device="cuda", compute_type="float16")
-
-# or run on GPU with INT8
-# model = WhisperModel(model_size, device="cuda", compute_type="int8_float16")
-# or run on CPU with INT8
-# model = WhisperModel(model_size, device="cpu", compute_type="int8")
-
-segments, info = model.transcribe("audio.mp3", beam_size=5)
-
-print("Detected language '%s' with probability %f" % (info.language, info.language_probability))
-
-for segment in segments:
-    print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
-```
-### YT-DLP
-
-
-[YT-DLP ](https://github.com/yt-dlp/yt-dlp)
-
-yt-dlp is a feature-rich command-line audio/video downloader with support for thousands of sites. The project is a fork of youtube-dl based on the now inactive youtube-dlc.
-
-
-* To get the transcription engine running:
-
-ToDo: this needs to be automated to keep the DB fresh. 
-
-```bash
-python engine.py --url https://youtube.com/watch?v=abc123 --model-size small
-```
-
-### LLama.cpp
-
-Let's use pure c++ inference from [LLAMMA.cpp](https://github.com/ggml-org/llama.cpp). This project also supports multimodal inputs now, so we can eventually extend this to pure video for analysis. It supports LLaVA 1.5 models, Qwen2-VL, Moondream (a personal favorite), and some ~15 other multi-modal models. For text-only models, it supports Gemma, Mamba Grok-1, Gpts, Deepseek models, Mistral models, some Mixtral Mixture of Experts, along some ~50 others. 
-
-
-
-"The main goal of llama.cpp is to enable LLM inference with minimal setup and state-of-the-art performance on a wide range of hardware - locally and in the cloud."
-
-### Embeddings
-
-* There's many ways to get embeddings. We can call models with an API key like Mistral, OpenAI, Anthropic embedding models. We can also go another route and try to run embeddings locally, with a local model, for example  [sentence_transformers](https://huggingface.co/sentence-transformers)
-
-
-"Sentence Transformers (a.k.a. SBERT) is the go-to Python module for accessing, using, and training state-of-the-art embedding and reranker models. It can be used to compute embeddings using Sentence Transformer models or to calculate similarity scores using Cross-Encoder (a.k.a. reranker) models. This unlocks a wide range of applications, including semantic search, semantic textual similarity, and paraphrase mining."
-
-
-```
-model = SentenceTransformer("all-MiniLM-L6-v2")
-```
-
+## Optimizations
 
 #### Question 1: Chunking
 
@@ -220,9 +148,8 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 
 * LangChain has a nice text splitter: https://python.langchain.com/docs/concepts/text_splitters/
 
-### LangChain Text Splitter
 
-### How to make RAG better
+#### How to make RAG better
 
 * There _is_ an optimal chunk size
 
@@ -236,9 +163,11 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 
     * when we embed an entire chunk of 20-30 sentences of content, there might be some fluff around it. We cant embed every sentence though since that could make things slow, or miss context in retrieval. A nice middle ground is to try small-to-big retrieval. 
 
-## Vector DB
 
 
 
-### Disclaimer: --> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use. 
+
+### Disclaimer: 
+
+--> This is an educational tool to showcase how to work with llms and RAG applications, not for commercial use. 
 
