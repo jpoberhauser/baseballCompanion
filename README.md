@@ -9,8 +9,13 @@ Local app that allows you to ask natural language questions about the current st
 - [baseballCompanion](#baseballcompanion)
   - [Tools:](#tools)
   - [Example - before and after RAG](#example---before-and-after-rag)
-  - [Seeing Rag Results with LangChain](#seeing-rag-results-with-langchain)
-  - [Example of Retrieval to Documents](#example-of-retrieval-to-documents)
+    - [Before RAG:](#before-rag)
+    - [After RAG:](#after-rag)
+  - [Relevant Context being Passed](#relevant-context-being-passed)
+  - [Source 1:](#source-1)
+  - [Source 2:](#source-2)
+  - [Source 3:](#source-3)
+- [Content: this? Who's telling him this? That's the other thing. Cause there's now a rat allegedly. There's a rat somewhere, somewhere in the line. There is a rat right now. But that's official. There's a rat. The only time Soto seemed happy this weekend was while he interacted with judge manager Aaron Boone. As I said, I'm no mind reader. Again, doubling down the fact that he has no idea what he's talking about. But my hunch is that not only does Soto miss the Yankees, but the permanence of his decision is sinking in. Soto is staring at another 14 plus years and flushing. Now, just for some context about the permanence that is setting in for Juan Soto and the sinking feeling he has for his decision, settling in, just to keep in mind, the Mets are currently 29 and 19. The Yankees are 27 and 19. Both some of the best teams in Major League Baseball. Juan Soto is getting paid $750 million, $50 million a year. I don't think there is any sort of grief setting in of Juan Soto of, oh no, I made a](#content-this-whos-telling-him-this-thats-the-other-thing-cause-theres-now-a-rat-allegedly-theres-a-rat-somewhere-somewhere-in-the-line-there-is-a-rat-right-now-but-thats-official-theres-a-rat-the-only-time-soto-seemed-happy-this-weekend-was-while-he-interacted-with-judge-manager-aaron-boone-as-i-said-im-no-mind-reader-again-doubling-down-the-fact-that-he-has-no-idea-what-hes-talking-about-but-my-hunch-is-that-not-only-does-soto-miss-the-yankees-but-the-permanence-of-his-decision-is-sinking-in-soto-is-staring-at-another-14-plus-years-and-flushing-now-just-for-some-context-about-the-permanence-that-is-setting-in-for-juan-soto-and-the-sinking-feeling-he-has-for-his-decision-settling-in-just-to-keep-in-mind-the-mets-are-currently-29-and-19-the-yankees-are-27-and-19-both-some-of-the-best-teams-in-major-league-baseball-juan-soto-is-getting-paid-750-million-50-million-a-year-i-dont-think-there-is-any-sort-of-grief-setting-in-of-juan-soto-of-oh-no-i-made-a)
   - [Prerequisites](#prerequisites)
     - [Faster Whisper](#faster-whisper)
     - [YT-DLP](#yt-dlp)
@@ -38,79 +43,63 @@ Local app that allows you to ask natural language questions about the current st
 
 ## Example - before and after RAG
 
-The date is May 15, 2025. There are several trade rumors about Luis Robert to the Mets. Let's ask our assistant what people are saying about this:
 
-**question:** 'what are people saying today about trade rumors of Luis Robert to the Mets?'
-
-Pre-context answer:
-
-```
-I don't have real-time information about specific trade rumors, but I can tell you that Luis Robert is a promising young outfielder who has been playing for the Chicago White Sox. He is known for his impressive performance at the plate and his speed on the bases. Some people may be interested in knowing what the Mets are thinking about the possibility of acquiring him, but it is important to note that nothing is certain until a trade is officially announced. Is there anything else you would like to know?<|im_end|>
-```
-
-Post-context answer:
-
-```
-Some people may be excited about the possibility of having him on the team, as he is known for his impressive performance at the plate and his speed on the bases. However, it is important to note that nothing is certain until a trade is officially announced. 
-
-The video and podcast episode you mentioned also provide some context about Luis Robert's performance in recent seasons, including his batting average, 
-on-base percentage, slugging, and OPS. It also mentions that he has been playing bad for two years, but that it is hard not to see what he did in previous seasons. 
-
-In terms of value, a trade for Luis Robert would likely involve giving up a significant amount of assets, such as top prospects 
-or established players. It is also worth considering the potential risk of injury, as Luis Robert has only played more than 101 games in one season in his entire career. 
-
-Is there anything else you would like to know about this topic?
-```
-
-## Seeing Rag Results with LangChain
-
-* This is using top 3 retrieval for context into a non-finetuned Mistral7B: run `chat.py` to try. 
+### Before RAG:
 
 
-```
-Prompt after formatting:
-Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+**question**
 
-Luis Robert, trade rumors are real. Bob Nightingale has reported that Luis Robert Jr. and the New York Mets have been linked in possible trades. The White Sox are looking at Mets prospects. We're gonna talk about everything that there is to possibly talk about with these Luis Robert trade rumors in today's YouTube video and podcast episode. Make sure you are subscribed to the Mets on Podcast, YouTube channel, so don't miss out on any of the content coming at you, videos after every single series, and a third bonus episode every single week. So you're gonna want to stick around and see that. And if you are listening to us on Apple, podcast, Spotify, Google, whatever it is, drop us a reading, drop us a review, download and subscribe. We really do appreciate it. James, when I saw this news, I know we've talked about this off camera many a times. Luis Robert would be awesome on this team. He'd be fantastic to have. He'd be kind of perfect, because when you look up and down this Mets
+**What is the situation with the Juan Soto and the Mets in 2025? please answer in bullet points**
 
-lineup, it's very clearly center field. Luis Robert Jr.'s that spot right now where he has two years of team options left on his White Sox contract, $20 million each for the next two seasons and both totally voluntary money. So the White Sox can just get rid of him from the end of the season if they don't want to pay. If you trade for him, I'm sure it won't happen. If you want to get rid of him, you could do that with no risk at all. And he has been playing bad for two years, but I think we all know the potential a guy like him has. And that was funny for me to see during our last video when we talked about it briefly, how much the Mets fan don't like this idea, how much they don't want Luis Robert, how much he sullied his name in baseball circles over his last 150 games when he's been really, really bad, but kind of forgetting the four years before that when he was really, really good the entire time. Yeah, I mean, let's give the people some context in case they don't know. Over his
+**answer**
 
-by again, the other comment, I think that was by MacDog and then also by Ken Rosendahl in South Territory is that this, because Will Sam and also somewhat perpude this too and report on the athletics saying like, it's not a lie that the Mets have checked in Luis Robert, have been somewhat connected to the White Sox and Robert with the center field being the spot of relative weakness in their lineup, but also being acutely aware that this is not the area of the most dire need. Cause the Mets do drop a hammer at some point, this trade deadline, it will likely be for a starting pitcher. And we still don't know where those dominoes will fall. We don't know what teams are going to be selling yet. It's way too early to know that, but being over the fourth threshold of the luxury tax, the Cohen tax, we're paying 110% tax on every single dollar that we spend above that. So if you bring in $20 million Luis Robert contract, that is $42 million. For the rest of the season, that'll be $20 million
+Assistant: - As of October 2023, Juan Soto is under contract with the San Diego Padres through the 2024 season.
+- There have been speculations regarding his potential trade or free agency, but no definitive moves have been made for him to join the New York Mets by 2025.
+- The Mets have shown interest in acquiring star players, which could include Soto if he becomes available.
+- Soto's performance and the Padres' success in 2024 will likely influence his future, including any potential dealings with the Mets.
+- By 2025, the Mets could be in a position to pursue Soto if his contract situation changes or if he becomes a free agent after the 2024 season.
 
-Question: hello, I am wondering if you can give me a run down on whats going on with the Luis Robert going to the Mets rumors?
-```
 
-## Example of Retrieval to Documents
+### After RAG:
 
-* query = "The New York Mets are very good"
+**question**
 
-```
-query_embedding = model.encode(query)
 
-# 4. Compute cosine similarities
-cos_scores = util.cos_sim(query_embedding, embeddings)[0]  # shape: (3,)
+**What is the situation with the Juan Soto and the Mets in 2025? please answer in bullet points**
 
-# 5. Find most similar
-most_similar_idx = cos_scores.argmax()
-print(f"Query: {query}")
-print(f"Most similar: {all_chunks[most_similar_idx]}")
-```
+**answer**
 
-Gives us: 
+Assistant: - Juan Soto is under a massive contract worth $750 million, with an annual salary of $50 million.
+- As of 2025, there are discussions about Soto’s performance and potential struggles, indicating he may not be meeting his own standards.
+- The Mets are performing well in the league, currently holding a record of 29-19, suggesting they are competitive.
+- There is speculation about Soto’s feelings towards his decision to join the Mets, with hints that he may miss the Yankees and the permanence of his contract is sinking in.
+- Media narratives are focusing on Soto’s competitiveness and the pressure he feels to live up to his contract.
+- The situation is being closely observed by fans and journalists, with some expressing dissatisfaction with the coverage and narratives surrounding Soto’s performance.
 
-```
-Most similar: York Mets, they went and got Juan Soto. They went and signed Francis Golden Door back. They've been bringing players in. 
-Having the richest owner in the sport obviously helps that. If you go down the line, the Cubs made a big play for Tucker and the rest of the Astros team.
- They bring him over. Now, they're performing very well. The Dodgers have went out and signed everybody. 
- The Padres and all the trades they've made for Michael King, Dylan Cease, you know, they've done a lot. 
- Champions League of Giants have landed a bunch of free agents. That's been the difference. T
- hey've just got the good players when the good players were available. If you look at the American League team, 
- name me a team that's done that. Yeah. There isn't a team that's went out and got the big player. T
- he Yankees, they did that and they made it to the World Series. They went out and got Juan Soto. 
- Then this year, you know, they went out and made some trades for Belly for Williams. Those haven't been great, but
-```
 
-And the above chunk would clearly be a very good context chunk for an LLM to have when asked about the current state of the New York Mets for example. 
+## Relevant Context being Passed
+
+* This is using top 3 retrieval for context run `chat_rag.py` to try. 
+
+**question**
+
+**What is the situation with the Juan Soto and the Mets in 2025? please answer in bullet points**
+
+**context**
+
+Source 1:
+----------------------------------------
+Content: about? But then it does come back to what we were alluding to that Juan Soto knows he's not playing up to his own standards. It's painfully obvious. I don't think anybody on earth is more aware of it than him, despite with every single Mets Yankee fan journalists on earth who want you to believe that they're the ones who are the most aware of it. No one cares right now more about Juan Soto's struggles than Juan Soto. The guy is competitive as fuck. He's one of the best players of all time and there's a lot of pressure from to live up to this massive contract and he intends to live up to it. Nothing there has changed. It's been seven weeks of baseball. People are like, I can't believe this is happening. Oh my God, he's so unhappy. Again, these are Mets fans that have not been cut from the same cloth. These are Mets fans that do not remember 2005 Carlos Beltran. They don't even remember first half 2022 Francisco Lindor, remember that? We were a year and a half into this shit and people
+
+Source 2:
+----------------------------------------
+Content: that one, there's, yeah, and this podcast, there's insanely bad journalism going on at times where it's just like the stupidest articles, the dumbest quotes. I mean, we do it to Mets people. So this isn't just a Mets Yankee thing. We'll media marvel anybody. We've media marveled ourselves on this podcast. Multiple times. So we will go after anybody that says something stupid. But the sense of entitlement that these guys have, I'll tell you this, like, I think from a vice perspective, I definitely don't love the idea of Juan Soto just leaving. Like that, I think there is something a little bit weird there. But for them to be like so sour grapes, because they couldn't get the quote that they were trying to set Juan Soto up for, because Mike Puma kind of opened the door with this a couple of weeks ago when he got the air and judge quote. It ties back to that a lot. Everyone's like, this fucking Mike Puma guy gets this quote. How the hell does he get it? That could have been mine.
+
+Source 3:
+----------------------------------------
+Content: this? Who's telling him this? That's the other thing. Cause there's now a rat allegedly. There's a rat somewhere, somewhere in the line. There is a rat right now. But that's official. There's a rat. The only time Soto seemed happy this weekend was while he interacted with judge manager Aaron Boone. As I said, I'm no mind reader. Again, doubling down the fact that he has no idea what he's talking about. But my hunch is that not only does Soto miss the Yankees, but the permanence of his decision is sinking in. Soto is staring at another 14 plus years and flushing. Now, just for some context about the permanence that is setting in for Juan Soto and the sinking feeling he has for his decision, settling in, just to keep in mind, the Mets are currently 29 and 19. The Yankees are 27 and 19. Both some of the best teams in Major League Baseball. Juan Soto is getting paid $750 million, $50 million a year. I don't think there is any sort of grief setting in of Juan Soto of, oh no, I made a
+============================================================
+
 
 
 ## Prerequisites
