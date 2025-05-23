@@ -1,6 +1,6 @@
 # baseballCompanion
 
-Local app that allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation). Currently using Mistral 7B instruct, but flexible to model backends. No keys needed. 
+App that allows you to ask natural language questions about the current state of baseball based on recent YouTube analysis videos. It uses Whisper for transcription, SentenceTransformers for embedding, FAISS as a vector database, and llama.cpp for local LLM inference with RAG (Retrieval-Augmented Generation). Currently using Mistral 7B instruct, but flexible to model backends. No keys needed. 
 
 
 
@@ -27,6 +27,7 @@ Local app that allows you to ask natural language questions about the current st
 - **faster-whisper** for super fast transcription of videos to audio
 - yt-dlp as a download engine for videos
 - **llama.cpp** as an inference engine with flexible model backends and can run on apple silicon
+  - llama.cpp is somewhat slow, so there is now openAI calling using **gpt-4o-mini**
 - **mistral-7b-instruct** as the base model
 - **sentence_transformers** as the sentence embedding model
 - **LangChain** for RAG, query construction, query refinement, etc..
