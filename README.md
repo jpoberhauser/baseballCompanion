@@ -4,7 +4,7 @@ App that allows you to ask natural language questions about the current state of
 
 
 
-![baseballCompanion](assets/logo.png)
+![baseballCompanion](assets/app_preview.png)
 
 - [baseballCompanion](#baseballcompanion)
   - [Tools](#tools)
@@ -14,6 +14,7 @@ App that allows you to ask natural language questions about the current state of
     - [🚀 After RAG (With Retrieved Context)](#-after-rag-with-retrieved-context)
     - [📂 Context Retrieved (Top 3 Sources)](#-context-retrieved-top-3-sources)
   - [🧪 How to Reproduce](#-how-to-reproduce)
+    - [Prerequisites](#prerequisites)
   - [Optimizations - ToDo](#optimizations---todo)
       - [Enginge to keep RAG relevant](#enginge-to-keep-rag-relevant)
     - [Disclaimer](#disclaimer)
@@ -100,10 +101,14 @@ This example demonstrates how retrieval improves the factuality and specificity 
 This uses top-3 retrieval using the script:
 
 ```bash
-python chat_rag.py
+python app.py
+```
 
 
-## Prerequisites
+
+
+
+### Prerequisites
 
 Install the required tools and packages:
 
