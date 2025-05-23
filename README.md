@@ -16,7 +16,7 @@ App that allows you to ask natural language questions about the current state of
   - [🧪 How to Reproduce](#-how-to-reproduce)
   - [Optimizations](#optimizations)
       - [Chunking](#chunking)
-      - [How to make RAG better](#how-to-make-rag-better)
+      - [How to make RAG better ToDo](#how-to-make-rag-better-todo)
       - [Enginge to keep RAG relevant](#enginge-to-keep-rag-relevant)
     - [Disclaimer](#disclaimer)
 
@@ -151,15 +151,23 @@ llama-cli -m models/mistral-7b-instruct-v0.1.Q4_K_M.gguf -cnv --chat-template ch
 * LangChain has a nice text splitter: https://python.langchain.com/docs/concepts/text_splitters/
 
 
-#### How to make RAG better
+#### How to make RAG better ToDo
 
-* There _is_ an optimal chunk size
+* Can we add semantinc chunking? Sentences right now are getting cut arbitrarily.
 
-* Add metadata into chunks
+    - if I can run a model to chunk by topic, and then by lenght, retrieval might be better
+
+* Add metadata into chunks.
 
     * This makes it so that we can add 'structured data'-like filters onto our unstructured data (podcast transcriptions)
 
+* Add better attribution
+
+    * The RAG -returned context can be shown back to user so they know where it came from.
+
 * Embed other things like 'what questions can this chunk answer'
+
+    * this makes it so that when we run similarity on the question, we can compare the user question to the embeddings of the chunk. But instead of using the embeddings of the chunk itself, you use embeddings of the question that the chunk can answe. 
 
 * Small-to-big retrieval
 
