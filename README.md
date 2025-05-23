@@ -8,15 +8,12 @@ Local app that allows you to ask natural language questions about the current st
 
 - [baseballCompanion](#baseballcompanion)
   - [Tools:](#tools)
-  - [Example - before and after RAG](#example---before-and-after-rag)
-    - [Before RAG:](#before-rag)
-    - [After RAG:](#after-rag)
-  - [Relevant Context being Passed](#relevant-context-being-passed)
-  - [Source 1:](#source-1)
-  - [Source 2:](#source-2)
-  - [Source 3:](#source-3)
-- [Content: this? Who's telling him this? That's the other thing. Cause there's now a rat allegedly. There's a rat somewhere, somewhere in the line. There is a rat right now. But that's official. There's a rat. The only time Soto seemed happy this weekend was while he interacted with judge manager Aaron Boone. As I said, I'm no mind reader. Again, doubling down the fact that he has no idea what he's talking about. But my hunch is that not only does Soto miss the Yankees, but the permanence of his decision is sinking in. Soto is staring at another 14 plus years and flushing. Now, just for some context about the permanence that is setting in for Juan Soto and the sinking feeling he has for his decision, settling in, just to keep in mind, the Mets are currently 29 and 19. The Yankees are 27 and 19. Both some of the best teams in Major League Baseball. Juan Soto is getting paid $750 million, $50 million a year. I don't think there is any sort of grief setting in of Juan Soto of, oh no, I made a](#content-this-whos-telling-him-this-thats-the-other-thing-cause-theres-now-a-rat-allegedly-theres-a-rat-somewhere-somewhere-in-the-line-there-is-a-rat-right-now-but-thats-official-theres-a-rat-the-only-time-soto-seemed-happy-this-weekend-was-while-he-interacted-with-judge-manager-aaron-boone-as-i-said-im-no-mind-reader-again-doubling-down-the-fact-that-he-has-no-idea-what-hes-talking-about-but-my-hunch-is-that-not-only-does-soto-miss-the-yankees-but-the-permanence-of-his-decision-is-sinking-in-soto-is-staring-at-another-14-plus-years-and-flushing-now-just-for-some-context-about-the-permanence-that-is-setting-in-for-juan-soto-and-the-sinking-feeling-he-has-for-his-decision-settling-in-just-to-keep-in-mind-the-mets-are-currently-29-and-19-the-yankees-are-27-and-19-both-some-of-the-best-teams-in-major-league-baseball-juan-soto-is-getting-paid-750-million-50-million-a-year-i-dont-think-there-is-any-sort-of-grief-setting-in-of-juan-soto-of-oh-no-i-made-a)
-  - [Prerequisites](#prerequisites)
+  - [📊 Example: Before and After RAG (Retrieval-Augmented Generation)](#-example-before-and-after-rag-retrieval-augmented-generation)
+    - [❓ Question](#-question)
+    - [🧠 Before RAG (No Context Used)](#-before-rag-no-context-used)
+    - [🚀 After RAG (With Retrieved Context)](#-after-rag-with-retrieved-context)
+    - [📂 Context Retrieved (Top 3 Sources)](#-context-retrieved-top-3-sources)
+  - [🧪 How to Reproduce](#-how-to-reproduce)
     - [Faster Whisper](#faster-whisper)
     - [YT-DLP](#yt-dlp)
     - [LLama.cpp](#llamacpp)
@@ -40,66 +37,75 @@ Local app that allows you to ask natural language questions about the current st
 
 
 
+## 📊 Example: Before and After RAG (Retrieval-Augmented Generation)
 
-## Example - before and after RAG
+This example demonstrates how retrieval improves the factuality and specificity of answers in a sports domain question.
 
+---
 
-### Before RAG:
+### ❓ Question
 
+**What is the situation with Juan Soto and the Mets in 2025?**  
+(Please answer in bullet points)
 
-**question**
+---
 
-**What is the situation with the Juan Soto and the Mets in 2025? please answer in bullet points**
+### 🧠 Before RAG (No Context Used)
 
-**answer**
+**Answer:**
 
-Assistant: - As of October 2023, Juan Soto is under contract with the San Diego Padres through the 2024 season.
-- There have been speculations regarding his potential trade or free agency, but no definitive moves have been made for him to join the New York Mets by 2025.
-- The Mets have shown interest in acquiring star players, which could include Soto if he becomes available.
-- Soto's performance and the Padres' success in 2024 will likely influence his future, including any potential dealings with the Mets.
+- As of October 2023, Juan Soto is under contract with the San Diego Padres through the 2024 season.  
+- There have been speculations regarding his potential trade or free agency, but no definitive moves have been made for him to join the New York Mets by 2025.  
+- The Mets have shown interest in acquiring star players, which could include Soto if he becomes available.  
+- Soto's performance and the Padres' success in 2024 will likely influence his future, including any potential dealings with the Mets.  
 - By 2025, the Mets could be in a position to pursue Soto if his contract situation changes or if he becomes a free agent after the 2024 season.
 
+---
 
-### After RAG:
+### 🚀 After RAG (With Retrieved Context)
 
-**question**
+**Answer:**
 
-
-**What is the situation with the Juan Soto and the Mets in 2025? please answer in bullet points**
-
-**answer**
-
-Assistant: - Juan Soto is under a massive contract worth $750 million, with an annual salary of $50 million.
-- As of 2025, there are discussions about Soto’s performance and potential struggles, indicating he may not be meeting his own standards.
-- The Mets are performing well in the league, currently holding a record of 29-19, suggesting they are competitive.
-- There is speculation about Soto’s feelings towards his decision to join the Mets, with hints that he may miss the Yankees and the permanence of his contract is sinking in.
-- Media narratives are focusing on Soto’s competitiveness and the pressure he feels to live up to his contract.
+- Juan Soto is under a massive contract worth $750 million, with an annual salary of $50 million.  
+- As of 2025, there are discussions about Soto’s performance and potential struggles, indicating he may not be meeting his own standards.  
+- The Mets are performing well in the league, currently holding a record of 29-19, suggesting they are competitive.  
+- There is speculation about Soto’s feelings toward his decision to join the Mets, with hints that he may miss the Yankees and the permanence of his contract is sinking in.  
+- Media narratives are focusing on Soto’s competitiveness and the pressure he feels to live up to his contract.  
 - The situation is being closely observed by fans and journalists, with some expressing dissatisfaction with the coverage and narratives surrounding Soto’s performance.
 
+---
 
-## Relevant Context being Passed
+### 📂 Context Retrieved (Top 3 Sources)
 
-* This is using top 3 retrieval for context run `chat_rag.py` to try. 
+<details>
+<summary>Source 1</summary>
 
-**question**
+> Juan Soto knows he's not playing up to his own standards. It's painfully obvious. No one cares more about Soto's struggles than him. He's extremely competitive and under pressure to live up to his massive contract. It's been seven weeks of baseball and fans are already reacting strongly.
 
-**What is the situation with the Juan Soto and the Mets in 2025? please answer in bullet points**
+</details>
 
-**context**
+<details>
+<summary>Source 2</summary>
 
-Source 1:
-----------------------------------------
-Content: about? But then it does come back to what we were alluding to that Juan Soto knows he's not playing up to his own standards. It's painfully obvious. I don't think anybody on earth is more aware of it than him, despite with every single Mets Yankee fan journalists on earth who want you to believe that they're the ones who are the most aware of it. No one cares right now more about Juan Soto's struggles than Juan Soto. The guy is competitive as fuck. He's one of the best players of all time and there's a lot of pressure from to live up to this massive contract and he intends to live up to it. Nothing there has changed. It's been seven weeks of baseball. People are like, I can't believe this is happening. Oh my God, he's so unhappy. Again, these are Mets fans that have not been cut from the same cloth. These are Mets fans that do not remember 2005 Carlos Beltran. They don't even remember first half 2022 Francisco Lindor, remember that? We were a year and a half into this shit and people
+> Media coverage of the Mets and Juan Soto has been highly sensationalized. There's frustration among journalists about not getting key quotes. The conversation reflects broader issues with sports journalism and entitlement among reporters.
 
-Source 2:
-----------------------------------------
-Content: that one, there's, yeah, and this podcast, there's insanely bad journalism going on at times where it's just like the stupidest articles, the dumbest quotes. I mean, we do it to Mets people. So this isn't just a Mets Yankee thing. We'll media marvel anybody. We've media marveled ourselves on this podcast. Multiple times. So we will go after anybody that says something stupid. But the sense of entitlement that these guys have, I'll tell you this, like, I think from a vice perspective, I definitely don't love the idea of Juan Soto just leaving. Like that, I think there is something a little bit weird there. But for them to be like so sour grapes, because they couldn't get the quote that they were trying to set Juan Soto up for, because Mike Puma kind of opened the door with this a couple of weeks ago when he got the air and judge quote. It ties back to that a lot. Everyone's like, this fucking Mike Puma guy gets this quote. How the hell does he get it? That could have been mine.
+</details>
 
-Source 3:
-----------------------------------------
-Content: this? Who's telling him this? That's the other thing. Cause there's now a rat allegedly. There's a rat somewhere, somewhere in the line. There is a rat right now. But that's official. There's a rat. The only time Soto seemed happy this weekend was while he interacted with judge manager Aaron Boone. As I said, I'm no mind reader. Again, doubling down the fact that he has no idea what he's talking about. But my hunch is that not only does Soto miss the Yankees, but the permanence of his decision is sinking in. Soto is staring at another 14 plus years and flushing. Now, just for some context about the permanence that is setting in for Juan Soto and the sinking feeling he has for his decision, settling in, just to keep in mind, the Mets are currently 29 and 19. The Yankees are 27 and 19. Both some of the best teams in Major League Baseball. Juan Soto is getting paid $750 million, $50 million a year. I don't think there is any sort of grief setting in of Juan Soto of, oh no, I made a
-============================================================
+<details>
+<summary>Source 3</summary>
 
+> Allegedly, there’s a "rat" leaking internal info. Soto seemed happiest when interacting with Aaron Judge and Yankees staff. There's speculation he misses the Yankees and is feeling the permanence of his decision to join the Mets. Despite this, both the Mets and Yankees are performing well in 2025.
+
+</details>
+
+---
+
+## 🧪 How to Reproduce
+
+This uses top-3 retrieval using the script:
+
+```bash
+python chat_rag.py
 
 
 ## Prerequisites
